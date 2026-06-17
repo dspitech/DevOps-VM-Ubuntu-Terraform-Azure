@@ -64,7 +64,7 @@
 
 ---
 
-## Étape 1 - Préparer le backend Terraform
+## Étape 1 - Préparer le backend Terraform (Optionnel)
 
 Le state Terraform doit être stocké dans Azure **avant** le premier `terraform init`.
 
@@ -73,6 +73,10 @@ git clone https://github.com/dspitech/DevOps-Porj-Mgnt-ESTIAM.git
 cd DevOps-Porj-Mgnt-ESTIAM
 chmod +x ./setup-backend.sh
 .setup-backend.sh
+
+# vérifier le nom du Storage Account créé
+az storage account list --resource-group OpenLab-TFState-RG --query "[].name" -o tsv
+# Puis mettez-le dans backend.tf : storage_account_name = "openlabtfstate14523"   # ← le nom réel
 ```
 
 Le script affiche le nom du Storage Account généré (ex. `openlabtfstate14523`).  
@@ -106,23 +110,21 @@ Terraform va :
 4. Créer les 10 ressources Azure (RG, VNet, Subnet, NSG, IP, NIC, Managed Disk, VM, attachement disque, association NIC-NSG)
 5. Injecter le script `cloud-init.yaml` dans la VM
 
+En ligne de commande PowerShell : 
+
+```
+download ./openlab_rsa
+```
 ---
 
 ## Étape 3 - Se connecter à la VM
 
-La commande SSH exacte est affichée dans les outputs :
-
-```bash
-terraform output -raw ssh_command
-```
-
-Exemple :
-```bash
-ssh -i ./openlab_rsa labadmin@<PUBLIC_IP>
+```powershell
+ssh -i "C:\Users\dev\Downloads\openlab_rsa" devopsadmin@00.000.006.222
 ```
 
 > Tapez `yes` pour accepter l'empreinte lors de la première connexion.  
-> La clé privée est sauvegardée dans le répertoire Terraform avec les permissions `600`.
+
 
 ---
 

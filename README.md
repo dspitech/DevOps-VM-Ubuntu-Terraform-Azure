@@ -91,9 +91,11 @@ terraform {
 
 ---
 
-## Étape 2 - Déploiement en une commande
+## Étape 2 - Déploiement
 
 ```bash
+git clone https://github.com/dspitech/Cours---DevOps-Porj-Mgnt-ESTIAM.git
+cd Cours---DevOps-Porj-Mgnt-ESTIAM
 terraform init && terraform fmt && terraform validate && terraform plan && terraform apply -auto-approve
 ```
 

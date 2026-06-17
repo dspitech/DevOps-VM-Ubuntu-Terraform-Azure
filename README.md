@@ -201,7 +201,7 @@ terraform destroy -auto-approve
 
 | Étape | Action | Résultat |
 |---|---|---|
-| 1 | `./scripts/setup-backend.sh` | Storage Account backend créé |
+| 1 | `./setup-backend.sh` | Storage Account backend créé |
 | 2 | Mettre à jour `backend.tf` | Nom du Storage Account renseigné |
 | 3 | `terraform init` | Provider Azure, TLS, Local téléchargés + backend configuré |
 | 4 | `terraform apply -auto-approve` | 10 ressources Azure créées, clés SSH générées |

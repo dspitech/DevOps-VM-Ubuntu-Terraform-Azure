@@ -69,8 +69,10 @@
 Le state Terraform doit être stocké dans Azure **avant** le premier `terraform init`.
 
 ```bash
-chmod +x scripts/setup-backend.sh
-./scripts/setup-backend.sh
+git clone https://github.com/dspitech/DevOps-Porj-Mgnt-ESTIAM.git
+cd DevOps-Porj-Mgnt-ESTIAM
+chmod +x ./setup-backend.sh
+.setup-backend.sh
 ```
 
 Le script affiche le nom du Storage Account généré (ex. `openlabtfstate14523`).  
@@ -94,8 +96,6 @@ terraform {
 ## Étape 2 - Déploiement
 
 ```bash
-git clone https://github.com/dspitech/DevOps-Porj-Mgnt-ESTIAM.git
-cd DevOps-Porj-Mgnt-ESTIAM
 terraform init && terraform fmt && terraform validate && terraform plan && terraform apply -auto-approve
 ```
 

@@ -198,6 +198,77 @@ resource "azurerm_network_security_group" "nsg" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
+security_rule {
+  name                       = "Allow-FastAPI"
+  priority                   = 106
+  direction                  = "Inbound"
+  access                     = "Allow"
+  protocol                   = "Tcp"
+  source_port_range          = "*"
+  destination_port_range     = "8000"
+  source_address_prefix      = "*"
+  destination_address_prefix = "*"
+}
+
+security_rule {
+  name                       = "Allow-Jenkins-UI"
+  priority                   = 107
+  direction                  = "Inbound"
+  access                     = "Allow"
+  protocol                   = "Tcp"
+  source_port_range          = "*"
+  destination_port_range     = "8081"
+  source_address_prefix      = "*"
+  destination_address_prefix = "*"
+}
+
+security_rule {
+  name                       = "Allow-Jenkins-Agent"
+  priority                   = 108
+  direction                  = "Inbound"
+  access                     = "Allow"
+  protocol                   = "Tcp"
+  source_port_range          = "*"
+  destination_port_range     = "50000"
+  source_address_prefix      = "*"
+  destination_address_prefix = "*"
+}
+
+security_rule {
+  name                       = "Allow-SonarQube"
+  priority                   = 109
+  direction                  = "Inbound"
+  access                     = "Allow"
+  protocol                   = "Tcp"
+  source_port_range          = "*"
+  destination_port_range     = "9000"
+  source_address_prefix      = "*"
+  destination_address_prefix = "*"
+}
+
+security_rule {
+  name                       = "Allow-Prometheus"
+  priority                   = 111
+  direction                  = "Inbound"
+  access                     = "Allow"
+  protocol                   = "Tcp"
+  source_port_range          = "*"
+  destination_port_range     = "9090"
+  source_address_prefix      = "*"
+  destination_address_prefix = "*"
+}
+
+security_rule {
+  name                       = "Allow-Grafana"
+  priority                   = 112
+  direction                  = "Inbound"
+  access                     = "Allow"
+  protocol                   = "Tcp"
+  source_port_range          = "*"
+  destination_port_range     = "3000"
+  source_address_prefix      = "*"
+  destination_address_prefix = "*"
+}
 }
 
 # ============================================================

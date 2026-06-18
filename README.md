@@ -69,8 +69,8 @@
 Le state Terraform doit être stocké dans Azure **avant** le premier `terraform init`.
 
 ```bash
-git clone https://github.com/dspitech/DevOps-Porj-Mgnt-ESTIAM.git
-cd DevOps-Porj-Mgnt-ESTIAM
+git clone https://github.com/dspitech/DevOps-VM-Ubuntu-Terraform-Azure.git
+cd DevOps-VM-Ubuntu-Terraform-Azur
 chmod +x ./setup-backend.sh
 .setup-backend.sh
 

@@ -269,6 +269,18 @@ security_rule {
   source_address_prefix      = "*"
   destination_address_prefix = "*"
 }
+security_rule {
+  name                       = "Allow-Staging-Port-8001"
+  priority                   = 1013
+  direction                  = "Inbound"
+  access                     = "Allow"
+  protocol                   = "Tcp"
+  source_port_range          = "*"
+  destination_port_range     = "8001"
+  source_address_prefix      = "*"
+  destination_address_prefix = "*"
+  description                = "Autorise l acces au port 8001 pour le staging"
+}
 }
 
 # ============================================================

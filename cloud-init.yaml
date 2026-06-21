@@ -1,7 +1,7 @@
 #cloud-config
 # ============================================================
 # Cloud-init — Provisionnement automatique au premier démarrage
-# Installe : Docker CE + Docker Compose + Git + Make + GitHub CLI
+# Installe : Docker CE + Docker Compose + Git + Make + GitHub CLI + ngrok
 # ============================================================
 
 package_update: true
@@ -65,11 +65,19 @@ runcmd:
       mkfs.ext4 -F "$DISK"
     fi
     mkdir -p "$MOUNT"
-    if ! grep -q "$DISK" /etc/fstab; then
+    if [ -b "$DISK" ] && ! grep -q "$DISK" /etc/fstab; then
       UUID=$(blkid -s UUID -o value "$DISK")
       echo "UUID=$UUID $MOUNT ext4 defaults,nofail 0 2" >> /etc/fstab
     fi
     mount -a
+
+  # ----------------------------------------------------------
+  # Installation de ngrok
+  # ----------------------------------------------------------
+  - curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
+  - echo "deb https://ngrok-agent.s3.amazonaws.com bookworm main" | sudo tee /etc/apt/sources.list.d/ngrok.list
+  - apt-get update -y
+  - apt-get install -y ngrok
 
   # ----------------------------------------------------------
   # Vérification finale — écriture dans le log
@@ -81,6 +89,7 @@ runcmd:
     echo "Git:         $(git --version)" >> /var/log/openlab-init.log
     echo "Make:        $(make --version | head -1)" >> /var/log/openlab-init.log
     echo "GitHub CLI:  $(gh --version | head -1)" >> /var/log/openlab-init.log
+    echo "ngrok:       $(ngrok --version)" >> /var/log/openlab-init.log
     echo "Date:        $(date)" >> /var/log/openlab-init.log
 
-final_message: "OpenLab VM prête. Docker, Git, Make et GitHub CLI installés. Durée : $UPTIME secondes."
+final_message: "OpenLab VM prête. Docker, Git, Make, GitHub CLI et ngrok installés. Durée : $UPTIME secondes."

@@ -281,6 +281,18 @@ security_rule {
   destination_address_prefix = "*"
   description                = "Autorise l acces au port 8001 pour le staging"
 }
+security_rule {
+  name                       = "Allow-Portainer-9443"
+  priority                   = 1014
+  direction                  = "Inbound"
+  access                     = "Allow"
+  protocol                   = "Tcp"
+  source_port_range          = "*"
+  destination_port_range     = "9443"
+  source_address_prefix      = "*"
+  destination_address_prefix = "*"
+  description                = "Autorise l'acces HTTPS a Portainer sur le port 9443"
+}
 }
 
 # ============================================================

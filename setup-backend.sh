@@ -37,7 +37,7 @@ az storage container create \
   --output none
 
 echo ""
-echo "✅ Backend prêt. Mettez à jour backend.tf avec :"
+echo "Backend prêt. Mettez à jour backend.tf avec :"
 echo "   storage_account_name = \"$STORAGE_ACCOUNT\""
 echo ""
 echo "==> Puis lancez :"
